@@ -1,4 +1,4 @@
-<% include partials/header %>
+<% include ../partials/header %>
 
 <div class="container">
     <header class="jumbotron">
@@ -15,6 +15,9 @@
                 <figure class="figure">
                     <img src="<%= campground.image %>" class="figure-img img-thumbnail">
                     <figcaption class="figure-caption text-center"><%= campground.name %></figcaption>
+                    <p class="text-center mt-2">
+                        <a href="/campgrounds/<%= campground._id %>" class="btn btn-info btn-sm">More Info</a>
+                    </p>
                 </figure>
             </div>
         <% }); %>
@@ -23,4 +26,4 @@
 
 
 
-<% include partials/footer %>
+<% include ../partials/footer %>
