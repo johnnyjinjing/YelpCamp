@@ -12,7 +12,8 @@ router.get('/', function(req, res) {
             console.log(err);
         } else {
             res.render('campgrounds/index', {
-                campgrounds: campgrounds
+                campgrounds: campgrounds,
+                page: 'campgrounds'
             });
         }
     });
@@ -20,8 +21,9 @@ router.get('/', function(req, res) {
 
 // CREATE - add new campground to DB
 router.post('/', middleware.isLoggedIn, function(req, res) {
-    var newCampground = {
+    var campground = {
         name: req.body.name,
+        price: req.body.price,
         image: req.body.image,
         description: req.body.description,
         author: {
@@ -29,7 +31,7 @@ router.post('/', middleware.isLoggedIn, function(req, res) {
             username: req.user.username
         }
     };
-    Campground.create(newCampground, function(err, campground) {
+    Campground.create(campground, function(err, campground) {
         if (err) {
             console.log(err);
         } else {

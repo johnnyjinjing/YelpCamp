@@ -25,3 +25,9 @@ figure.figure-camground figcaption {
 .delete-form {
     display: inline;
 }
+
+.btn-primary {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
