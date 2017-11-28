@@ -20,10 +20,14 @@ var indexRoutes = require('./routes/index'),
 // DB
 var seedDB = require('./seeds');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/yelp_camp', { useMongoClient: true });
+var databaseUrl =
+    process.env.YELPCAMP_DATABASE_URL || 'mongodb://localhost/yelp_camp';
+
+mongoose.connect(databaseUrl, { useMongoClient: true });
+
+var port = process.env.PORT || 3000;
 
 // seedDB(); // seed DB
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
@@ -33,7 +37,7 @@ app.use(flash());
 // passport config
 app.use(
     require('express-session')({
-        secret: 'ahdadhkadhsdashasd',
+        secret: process.env.YELPCAMP_PASSPORT_KEY,
         resave: false,
         saveUninitialized: false
     })
@@ -57,6 +61,6 @@ app.use('/', indexRoutes);
 app.use('/campgrounds', campgroundRoutes);
 app.use('/campgrounds/:id/comments/', commentRoutes);
 
-app.listen(3000, function() {
-    console.log('The YelpCamp server has started...');
+app.listen(port, function() {
+    console.log('The YelpCamp server has started on port ' + port);
 });

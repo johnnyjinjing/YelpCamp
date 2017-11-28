@@ -2,6 +2,9 @@
   "name": "YelpCamp",
   "version": "1.0.0",
   "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
   "repository": "https://github.com/johnnyjinjing/YelpCamp.git",
   "author": "Jing Jin <johnnyjinjing@gmail.com>",
   "license": "MIT",
